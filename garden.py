@@ -131,7 +131,6 @@ class Tomato(Vegetables):
     def __init__(self, index, vegetable_type, states, name):
         super(Tomato, self).__init__(states, vegetable_type, name)
         self.index = index
-        self.vegetable_type = vegetable_type
         self.state = 0
 
     def grow(self):
@@ -170,8 +169,7 @@ class TomatoBush:
     def provide_harvest(self):
         self.tomatoes = []
 
-    @property
-    def list_of_plants(self):
+    def __call__(self):
         return self.tomatoes
 
 
@@ -179,7 +177,6 @@ class Apple(Fruit):
     def __init__(self, index, fruits_type, states, name):
         super(Apple, self).__init__(states, fruits_type, name)
         self.index = index
-        self.fruits_type = fruits_type
         self.state = 0
 
     def grow(self):
@@ -218,16 +215,12 @@ class AppleTree:
     def provide_harvest(self):
         self.apples = []
 
-    @property
-    def list_of_plants(self):
+    def __call__(self):
         return self.apples
-
 
 class StarGardener(Gardener):
     def __init__(self, name, plants):
         super(StarGardener, self).__init__(name, plants)
-        self.name = name
-        self.plants = plants
 
     def harvest(self):
         print('Gardener is harvesting...')
@@ -249,7 +242,7 @@ class StarGardener(Gardener):
 
     def check_states(self):
         for all_plants in self.plants:
-            for plant in all_plants.list_of_plants:
+            for plant in all_plants():
                 if plant.state == 3:
                     return True
                 return False
@@ -260,11 +253,14 @@ class Pests(AbstractPests):
     def eat(self):
         for pest in range(self.quantity):
             if Garden().vegetables:
-                Garden().vegetables.pop()
+                eaten = Garden().vegetables.pop()
+                print(f"Pests ate {eaten.name} {eaten.index}")
             elif Garden().fruits:
-                Garden().fruits.pop()
+                eaten = Garden().fruits.pop()
+                print(f"Pests ate {eaten.name} {eaten.index}")
             else:
                 print("everything is already eaten")
+                return
 
 
 
