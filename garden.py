@@ -238,7 +238,7 @@ class StarGardener(Gardener):
         print('Gardner is finished')
 
     def poison_pests(self):
-        pass
+        Garden().pests.quantity //= 2
 
     def check_states(self):
         for all_plants in self.plants:
