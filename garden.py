@@ -149,6 +149,9 @@ class Tomato(Vegetables):
     def print_state(self):
         print(f'{self.vegetable_type} {self.index} is {self.state}')
 
+    def __repr__(self):
+        return f"Tomato (index = {self.index}, type = {self.vegetable_type}, name = {self.name})"
+
 
 class TomatoBush:
     def __init__(self, num):
@@ -171,6 +174,9 @@ class TomatoBush:
 
     def __call__(self):
         return self.tomatoes
+
+    def __repr__(self):
+        return f"TomatoBush (type = Red_tomato, number of tomatoes = {len(self.tomatoes)})"
 
 
 class Apple(Fruit):
@@ -195,6 +201,9 @@ class Apple(Fruit):
     def print_state(self):
         print(f'{self.fruits_type} {self.index} is {self.state}')
 
+    def __repr__(self):
+        return f"Apple (index = {self.index}, type = {self.fruits_type}, variety = {self.name})"
+
 
 class AppleTree:
     def __init__(self, num):
@@ -217,6 +226,9 @@ class AppleTree:
 
     def __call__(self):
         return self.apples
+
+    def __repr__(self):
+        return f"AppleTree (type = Golden, number of apples = {len(self.apples)})"
 
 class StarGardener(Gardener):
     def __init__(self, name, plants):
@@ -247,6 +259,9 @@ class StarGardener(Gardener):
                     return True
                 return False
 
+    def __repr__(self):
+        return f"StarGardener (name = {self.name})"
+
 
 class Pests(AbstractPests):
 
@@ -261,6 +276,9 @@ class Pests(AbstractPests):
             else:
                 print("everything is already eaten")
                 return
+
+    def __repr__(self):
+        return f"Pests (type = {self.pests_type}, number of pests = {self.quantity})"
 
 
 
